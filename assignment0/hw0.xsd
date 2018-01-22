@@ -1,0 +1,58 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:element name="movies">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="movie" minOccurs='1'>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="title" type="xs:string"/>
+              <xs:element name="year">
+                <xs:simpleType>
+                  <xs:restriction base="xs:int">
+                    <xs:totalDigits value="4"/>
+                    <xs:minInclusive value='1000'/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="genre">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="Action"/>
+                    <xs:enumeration value="Adventure"/>
+                    <xs:enumeration value="Comedy"/>
+                    <xs:enumeration value="Drama"/>
+                    <xs:enumeration value="Fantasy"/>
+                    <xs:enumeration value="Horror"/>
+                    <xs:enumeration value="Mystery"/>
+                    <xs:enumeration value="Thriller"/>
+                    <xs:enumeration value="Western"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="actors">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="actor" minOccurs='1'>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="name">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="1"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="dateofbirth" type="xs:date"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
