@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<movies>
+  <movie>
+    <title>Movie1</title>
+    <year>1999</year>
+    <genre>Action</genre>
+    <actors>
+      <actor>
+        <name>Bob Bobbers</name>
+        <dateofbirth>1994-01-01</dateofbirth>
+      </actor>
+    </actors>
+  </movie>
+</movies>
