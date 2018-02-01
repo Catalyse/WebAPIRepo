@@ -1,0 +1,121 @@
+{
+	"info": {
+		"name": "HW1",
+		"_postman_id": "3601dada-3607-232d-a06e-bb1207606676",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8e8a33b8-b386-41c4-92c2-4b7634dee330",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"",
+							"var booklist = JSON.parse(responseBody);",
+							"",
+							"pm.environment.set('bookList', booklist);",
+							"pm.environment.set('id', booklist.items[1].id)",
+							"",
+							"for(i = 0; i < booklist.items.length; i++) {",
+							"    TestBook(i);",
+							"}",
+							"",
+							"function TestBook(i) {",
+							"    pm.test(\"Book \" + (i+1) + \" contains the word Turing\", function() {",
+							"        if(booklist.items[i].volumeInfo.title.indexOf(\"turing\") !== -1 || booklist.items[i].volumeInfo.title.indexOf(\"Turing\") !== -1) {",
+							"            return true;",
+							"        }",
+							"        else{",
+							"            return false;",
+							"        }",
+							"    });",
+							"}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://www.googleapis.com/books/v1/volumes?q={{book_title}}",
+					"protocol": "https",
+					"host": [
+						"www",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"books",
+						"v1",
+						"volumes"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{{book_title}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "SpecificBook",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c8ed26ef-a348-40f9-b1e1-576d482f225d",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"",
+							"var result = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Response book ID matches the one from the first request\", function() {",
+							"    return (result.id == pm.environment.get('id'));",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://www.googleapis.com/books/v1/volumes/{{id}}",
+					"protocol": "https",
+					"host": [
+						"www",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"books",
+						"v1",
+						"volumes",
+						"{{id}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
