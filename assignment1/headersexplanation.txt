@@ -1,0 +1,19 @@
+Alt-Svc: This header is designed to allow the identity and location of a service to be different
+Cache-Control: This header specifies directives for caching of the request(or response), from allowing how long it can be cached to if it can be cached at all
+Content-Encoding: This header describes the method used to compress the media-type
+Content-Type: Indicates the content of the response so the receiver knows how to parse/handle it
+Date: Date of the request/response
+ETag: This header identifies the specific version of the resource for verification and more efficient caching.
+Expires: Date the request/response is no longer valid
+Server: Indicates the server the header was generated on.  In this case Google Server Environment
+Transfer-Encoding: This header specifies the form of encoding used to transer the response data to the user
+Vary: This header is used to determine how to make future requests of the same type, helping the client determine whether or not a cached version can be used saving the server resources.
+	Origin: Request from the same resource
+	X-Origin: Cross Origin Resource Sharing
+X-Content-Type-Options: This header indicates that the mime types in the content-type headers must be followed, preventing sniffing
+X-Frame-Options: This header indicates whether a <frame> <iframe> or <object> can exist, and from where. In this case, only from the same origin
+X-XSS-Protection: This header sets the mode of cross site scripting attack defense.
+	Mode 0 is off.
+	Mode 1 is default and removes unsafe scripts
+	Mode=block prevents the page from being rendered.
+	Mode=report allows for reporting of the attack and cleans the page.
